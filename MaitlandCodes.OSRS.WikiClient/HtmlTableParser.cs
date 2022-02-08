@@ -53,7 +53,6 @@ namespace MaitlandCodes.OSRS.WikiClient
 
             // Enumerate the headers into keys
             var headers = tbody.Descendants("th");
-            var keys = new List<string>();
 
             foreach (var h in headers)
             {

@@ -1,12 +1,6 @@
-﻿using HtmlAgilityPack;
-using MaitlandCodes.OSRS.WikiClient.Models;
+﻿using MaitlandCodes.OSRS.WikiClient.Models;
 using Refit;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MaitlandCodes.OSRS.WikiClient
 {
@@ -40,7 +34,7 @@ namespace MaitlandCodes.OSRS.WikiClient
                 int priceSoldAt;
                 int priceBoughtAt;
 
-                bool isMembers = t["Members?.alt"]== "Member icon.png";
+                bool isMembers = t["Members?.alt"] == "Member icon.png";
 
                 int.TryParse(t["Number in stock"], NumberStyles.Any, CultureInfo.InvariantCulture, out numberInStock);
                 int.TryParse(t["Price sold at"], NumberStyles.Any, CultureInfo.InvariantCulture, out priceSoldAt);
