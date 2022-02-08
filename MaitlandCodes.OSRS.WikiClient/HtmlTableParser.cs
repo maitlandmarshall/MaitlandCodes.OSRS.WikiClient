@@ -13,6 +13,9 @@ namespace MaitlandCodes.OSRS.WikiClient
 
             var headers = this.GetHeaders(agility).ToList();
 
+            if (headers.Any() == false)
+                yield break;
+
             // For each tr, except the first, use the headers to extract the values
             var rows = agility.DocumentNode.Descendants("tr").Skip(1).ToList();
 
@@ -49,7 +52,10 @@ namespace MaitlandCodes.OSRS.WikiClient
         private IEnumerable<string> GetHeaders(HtmlDocument agility)
         {
             // Get the table where the data lives in
-            var tbody = agility.DocumentNode.Descendants("tbody").First();
+            var tbody = agility.DocumentNode.Descendants("tbody").FirstOrDefault();
+
+            if (tbody is null)
+                yield break;
 
             // Enumerate the headers into keys
             var headers = tbody.Descendants("th");
