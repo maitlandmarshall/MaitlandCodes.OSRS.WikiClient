@@ -19,12 +19,12 @@ namespace MaitlandCodes.OSRS.WikiClient
         {
             var parseResult = await this.wikiClient.GetParseAction(item, $"{{{{Store locations list|{item}}}}}");
             var html = parseResult.Parse.Text.Html;
-            var storeLocations = this.ParseStoreLocations(html).ToList();
+            var storeLocations = this.ParseStoreLocations(html, item).ToList();
 
             return storeLocations;
         }
 
-        private IEnumerable<StoreLocation> ParseStoreLocations(string html)
+        private IEnumerable<StoreLocation> ParseStoreLocations(string html, string item)
         {
             var tableDict = this.htmlTableParser.Parse(html);
 
@@ -42,6 +42,7 @@ namespace MaitlandCodes.OSRS.WikiClient
 
                 var storeLocation = new StoreLocation
                 {
+                    Item = item,
                     Seller = new UriWithTitle
                     {
                         Title = t["Seller"],
